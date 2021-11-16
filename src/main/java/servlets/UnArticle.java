@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,41 +10,34 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
+import model.Article;
 
 /**
- * Servlet implementation class UserInfo
+ * Servlet implementation class UnArticle
  */
-@WebServlet("/userInfo")
-public class UserInfo extends HttpServlet {
+@WebServlet("/unArticle")
+public class UnArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public UserInfo() {
+    public UnArticle() {
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Je crée la session
+		//Je récupère la session
 		HttpSession session = (HttpSession) request.getSession();
-		//je récupère le user sur la session
-		User user = (User) session.getAttribute("USER");
-		//si il est null je renvoie à la page d'accueil
-		if(user==null) { 
-			response.sendRedirect(this.getServletContext().getContextPath() + "/session");
-			return;
-		}
-		//Je range chaque information à afficher sur la page web dans des variables
-		request.setAttribute("utilisateur", user.getUsername());
-		request.setAttribute("nbreArticle", user.getNombreArticle());
-		request.setAttribute("email", user.getEmail());
-		request.setAttribute("role", user.getRole());
-		//J'envoie ces varaibles sur la page web
-		request.getRequestDispatcher("/WEB-INF/userInfo.jsp").forward(request, response);
+		
+		//je récupère la liste des articles de cette session
+		List<Article> listArticle = (ArrayList<Article>) session.getAttribute("ARTICLES");
+		
+		//J'envoie cette list à ma jsp unArticle.jsp
+		
+		
 	}
 
 	/**

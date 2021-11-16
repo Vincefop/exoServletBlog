@@ -31,7 +31,7 @@ public class Session extends HttpServlet {
 		HttpSession session = (HttpSession) request.getSession();
 		
 		//je récupère les informations de ce user sur la bdd
-		User user = new User("YIIA234", "Vince", 4, "vince@contact.fr", "admin");
+		User user = new User("YIIA234", "Vince", 3, "vince@contact.fr", "admin");
 		
 		//Je mets le user dans la session
 		session.setAttribute("USER", user);

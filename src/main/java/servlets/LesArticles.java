@@ -36,7 +36,10 @@ public class LesArticles extends HttpServlet {
 		
 		//De la session je récupère le username de l'utilisateur
 		User user = (User) session.getAttribute("USER");
-		String username = user.getUsername();
+		
+		//je récupère le nombre d'article
+		int nbreArticle = user.getNombreArticle();
+		request.setAttribute("nbreArticle", nbreArticle);
 		
 		//De la bdd je récupère tous les titres des articles de ce user
 		List<Article> listArticles = new ArrayList<Article>();
@@ -47,10 +50,14 @@ public class LesArticles extends HttpServlet {
 		listArticles.add(marathon);
 		listArticles.add(biere);
 		
-		//J'envoie les informations par la request
-		for(int i=0; i<listArticles.size(); i++) {
-			
-		}
+		//J'envoie la liste dans la session
+		session.setAttribute("ARTICLES", listArticles);
+		
+		//j'envoie la liste dans la request
+		request.setAttribute("listArticles", listArticles);
+		
+		//J'envoie ces varaibles sur la page web
+		request.getRequestDispatcher("/WEB-INF/lesArticles.jsp").forward(request, response);
 		
 		
 	}

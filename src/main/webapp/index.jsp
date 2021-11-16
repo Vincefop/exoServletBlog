@@ -8,7 +8,7 @@
 	
 	<a href='<%= request.getContextPath() %>/userInfo'> - Mes Infos </a>
 	<br/> <br/>
-	<a href='<%= request.getContextPath() %>/articles'> - Voir les articles </a>
+	<a href='<%= request.getContextPath() %>/lesArticles'> - Voir les articles </a>
 	
 	 
 <%@ include file='./fragments/footer.jsp' %>
