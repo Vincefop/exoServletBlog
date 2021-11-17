@@ -11,16 +11,16 @@ import jakarta.servlet.http.HttpSession;
 import model.User;
 
 /**
- * Servlet implementation class Session
+ * Servlet implementation class Index
  */
-@WebServlet("/session")
-public class Session extends HttpServlet {
+@WebServlet(urlPatterns = "/index.jsp")
+public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public Session() {
+    public Index() {
     }
 
 	/**
@@ -31,13 +31,13 @@ public class Session extends HttpServlet {
 		HttpSession session = (HttpSession) request.getSession();
 		
 		//je récupère les informations de ce user sur la bdd
-		User user = (User) session.getAttribute("USER");
+		User user = new User("YIIA234", "Vince", 3, "vince@contact.fr", "admin");
 		
+		//Je mets le user dans la session
+		session.setAttribute("USER", user);
 		
-		//Je récupère l'attribut username
-		request.setAttribute("nom", user.getUsername());
-		request.getRequestDispatcher("session.jsp").forward(request, response);
-		
+		//Je transmets la ressource
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 	}
 
@@ -45,7 +45,8 @@ public class Session extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

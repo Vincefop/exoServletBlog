@@ -17,7 +17,7 @@ import model.User;
 /**
  * Servlet Filter implementation class AdminFilter
  */
-@WebFilter(filterName = "fAdmin", urlPatterns = "/session")
+//@WebFilter(filterName = "fAdmin", urlPatterns = "/session")
 public class AdminFilter implements Filter {
 
     /**
@@ -42,6 +42,11 @@ public class AdminFilter implements Filter {
 		
 		//Je récupère le user actuel
 		User user = (User) session.getAttribute("USER");
+		
+		//Le user est il nul
+		if(user==null) {
+			System.out.println("user de la session est null donc pas de redirection");
+		}
 		
 		//Je vérifie son role
 		if(user.getRole().equals("admin")) {
