@@ -37,9 +37,6 @@ public class LesArticles extends HttpServlet {
 		//De la session je récupère le username de l'utilisateur
 		User user = (User) session.getAttribute("USER");
 		
-		//je récupère le nombre d'article
-		int nbreArticle = user.getNombreArticle();
-		request.setAttribute("nbreArticle", nbreArticle);
 		
 		//De la bdd je récupère tous les titres des articles de ce user
 		List<Article> listArticles = new ArrayList<Article>();

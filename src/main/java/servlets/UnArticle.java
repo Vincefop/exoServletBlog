@@ -33,9 +33,25 @@ public class UnArticle extends HttpServlet {
 		HttpSession session = (HttpSession) request.getSession();
 		
 		//je récupère la liste des articles de cette session
-		List<Article> listArticle = (ArrayList<Article>) session.getAttribute("ARTICLES");
+		List<Article> listArticles = (ArrayList<Article>) session.getAttribute("ARTICLES");
+		System.out.println(listArticles.toString());
+		//Je récupère le paramètre de l'uid
+		String articleUid = request.getParameter("id");
 		
-		//J'envoie cette list à ma jsp unArticle.jsp
+		
+		//Je récupère l'article avec l'id approprié
+		Article art = null;
+		for (Article article : listArticles) {
+			if(article.getArticleUID().equals(articleUid)) {
+				art = article;
+				break;
+			}
+		}
+		//S'il n'est pas null je l'envoie sur le request
+		if(art!=null) {
+			request.setAttribute("article", art);
+		}
+		request.getRequestDispatcher("/WEB-INF/unArticle.jsp").forward(request, response);
 		
 		
 	}

@@ -13,7 +13,7 @@ import model.User;
 /**
  * Servlet implementation class UserInfo
  */
-@WebServlet("/userInfo")
+@WebServlet(urlPatterns = "/userInfo")
 public class UserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,12 +36,14 @@ public class UserInfo extends HttpServlet {
 			response.sendRedirect(this.getServletContext().getContextPath() + "/session");
 			return;
 		}
-		//Je range chaque information à afficher sur la page web dans des variables
+		//Je fais le choix de ranger chaque information (à afficher sur la page web) dans des variables
+		//J'aurais pu envoyer directement le User et appeler les méthodes java dans le jsp
+		//... a voir ce qui est le plus performant
 		request.setAttribute("utilisateur", user.getUsername());
 		request.setAttribute("nbreArticle", user.getNombreArticle());
 		request.setAttribute("email", user.getEmail());
 		request.setAttribute("role", user.getRole());
-		//J'envoie ces varaibles sur la page web
+		//J'envoie ces variables sur la page web
 		request.getRequestDispatcher("/WEB-INF/userInfo.jsp").forward(request, response);
 	}
 

@@ -2,7 +2,7 @@ package model;
 
 public class User {
 
-	private String uid;
+	private String userUid;
 	private String username;
 	private int nombreArticle;
 	private String email;
@@ -14,7 +14,7 @@ public class User {
 
 	public User(String uid, String username, int nombreArticle, String email, String role) {
 		super();
-		this.uid = uid;
+		this.userUid = uid;
 		this.username = username;
 		this.nombreArticle = nombreArticle;
 		this.email = email;
@@ -56,12 +56,12 @@ public class User {
 		this.role = role;
 	}
 
-	public String getUid() {
-		return uid;
+	public String getUserUid() {
+		return userUid;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setUserUid(String uid) {
+		this.userUid = uid;
 	}
 
 	
